@@ -1,0 +1,33 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     constructor(val = 0, next = null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+
+class Solution {
+    /**
+     * @param {ListNode} list1
+     * @param {ListNode} list2
+     * @return {ListNode}
+     */
+    mergeTwoLists(list1, list2) {
+        let dummyNode = new ListNode(0); //dummyNode val=0 next=null;
+        let current =dummyNode;
+        while(list1&&list2){
+            if(list1.val<=list2.val){ //list1 val is smaller
+                current.next =list1;
+                list1=list1.next;
+            }else{
+                current.next = list2;
+                list2=list2.next;
+            }
+            current=current.next;
+        }
+        current.next= list1 || list2 //just add remaing items left
+        return dummyNode.next; //since dummy node start with 0 value
+    }
+}
